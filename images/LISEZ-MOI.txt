@@ -1,0 +1,5 @@
+# Dossier images
+Placez ici vos images :
+- fondateur.jpg  →  Photo du fondateur (recommandée : 560×560px minimum)
+- logo.png       →  Logo IAM Conseil (optionnel, déjà intégré en SVG)
+
