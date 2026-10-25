@@ -13,6 +13,98 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+/* ── SECTION CLIENTS CAROUSEL ── */
+.clients {
+  padding: 72px 0 64px;
+  background: #f8f9fc;
+  overflow: hidden;
+}
+.clients-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 24px;
+}
+.clients-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
+  color: var(--navy);
+  margin-top: 8px;
+}
+.clients-track-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+/* Fondu sur les bords */
+.clients-track-wrapper::before,
+.clients-track-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.clients-track-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #f8f9fc, transparent);
+}
+.clients-track-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #f8f9fc, transparent);
+}
+.clients-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: scroll-logos 28s linear infinite;
+}
+.clients-track:hover {
+  animation-play-state: paused;
+}
+@keyframes scroll-logos {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.client-logo-item {
+  flex-shrink: 0;
+  width: 160px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(27,43,107,0.07);
+  transition: box-shadow 0.3s, transform 0.3s;
+  cursor: default;
+}
+.client-logo-item:hover {
+  box-shadow: 0 6px 24px rgba(27,43,107,0.14);
+  transform: translateY(-3px);
+}
+.client-logo-item img {
+  width: 130px;
+  height: 52px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter 0.3s, opacity 0.3s;
+}
+.client-logo-item:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+@media (max-width: 680px) {
+  .clients { padding: 52px 0 44px; }
+  .clients-track-wrapper::before,
+  .clients-track-wrapper::after { width: 60px; }
+  .client-logo-item { width: 130px; height: 60px; }
+  .client-logo-item img { width: 110px; height: 44px; }
+}
+</style>
 </head>
 <body>
 
@@ -69,7 +161,7 @@
         <div class="stat-label">Années d'expertise</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">20<span>+</span></div>
+        <div class="stat-num">50<span>+</span></div>
         <div class="stat-label">Missions réalisées</div>
       </div>
       <div class="stat-item">
@@ -116,9 +208,9 @@
         </svg>
       </div>
       <h3 class="offre-title">Agilité à l'échelle</h3>
-      <p class="offre-desc">Déploiement de frameworks agiles (SAFe, Scrum@Scale) à l'échelle de l'organisation pour améliorer la réactivité, la collaboration inter-équipes et la livraison de valeur continue.</p>
+      <p class="offre-desc">Déploiement de frameworks agiles (SAFe, LeSS, Scrum@Scale) à l'échelle de l'organisation pour améliorer la réactivité, la collaboration inter-équipes et la livraison de valeur continue.</p>
       <div class="offre-tags">
-        <span class="tag">SAFe</span>
+        <span class="tag">SAFe / LeSS</span>
         <span class="tag">Coaching agile</span>
         <span class="tag">Organisation apprenante</span>
         <span class="tag">OKR</span>
@@ -229,6 +321,33 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ILS NOUS ONT FAIT CONFIANCE -->
+<section class="clients">
+  <div class="clients-header">
+    <div class="section-label">Références</div>
+    <h2 class="clients-title">Ils nous ont fait confiance</h2>
+  </div>
+  <div class="clients-track-wrapper">
+    <div class="clients-track">
+      <div class="client-logo-item"><img src="images/logo-bnp.png" alt="BNP Paribas"></div>
+      <div class="client-logo-item"><img src="images/logo-allianz.png" alt="Allianz"></div>
+      <div class="client-logo-item"><img src="images/logo-loreal.png" alt="L'Oréal"></div>
+      <div class="client-logo-item"><img src="images/logo-smcp.png" alt="SMCP"></div>
+      <div class="client-logo-item"><img src="images/logo-mgefi.png" alt="Mgéfi"></div>
+      <div class="client-logo-item"><img src="images/logo-ratp.png" alt="RATP"></div>
+      <div class="client-logo-item"><img src="images/logo-fondation-france.png" alt="Fondation de France"></div>
+      <!-- Duplicate pour boucle infinie -->
+      <div class="client-logo-item"><img src="images/logo-bnp.png" alt="BNP Paribas"></div>
+      <div class="client-logo-item"><img src="images/logo-allianz.png" alt="Allianz"></div>
+      <div class="client-logo-item"><img src="images/logo-loreal.png" alt="L'Oréal"></div>
+      <div class="client-logo-item"><img src="images/logo-smcp.png" alt="SMCP"></div>
+      <div class="client-logo-item"><img src="images/logo-mgefi.png" alt="Mgéfi"></div>
+      <div class="client-logo-item"><img src="images/logo-ratp.png" alt="RATP"></div>
+      <div class="client-logo-item"><img src="images/logo-fondation-france.png" alt="Fondation de France"></div>
     </div>
   </div>
 </section>
