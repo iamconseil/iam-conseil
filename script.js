@@ -107,29 +107,32 @@ document.addEventListener('DOMContentLoaded', function () {
        *   Voir guide d'hébergement pour les instructions complètes.
        */
 
-      const formData = new FormData(contactForm);
-fetch('<https://formspree.io/f/mgaopenv>', {
-  method: 'POST',
-  body: formData,
-  headers: { 'Accept': 'application/json' }
-})
-.then(res => res.json())
-.then(() => {
-  showFormMsg('Merci ! Votre message a bien été envoyé.', 'success');
-  contactForm.reset();
-})
-.catch(() => showFormMsg('Erreur lors de l\'envoi. Réessayez.', 'error'));
-
       const btn = contactForm.querySelector('.form-submit');
       btn.textContent = 'Envoi en cours…';
       btn.disabled    = true;
 
-      setTimeout(function () {
-        showFormMsg('Merci ! Votre message a bien été envoyé. Nous vous répondrons sous 48h.', 'success');
-        contactForm.reset();
+      const formData = new FormData(contactForm);
+      fetch('https://formspree.io/f/mgaopenv', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data.ok) {
+          showFormMsg('Merci ! Votre message a bien été envoyé. Nous vous répondrons sous 48h.', 'success');
+          contactForm.reset();
+        } else {
+          showFormMsg('Erreur lors de l\'envoi. Veuillez réessayer.', 'error');
+        }
         btn.textContent = 'Envoyer ma demande →';
         btn.disabled    = false;
-      }, 1200);
+      })
+      .catch(function () {
+        showFormMsg('Erreur réseau. Veuillez réessayer.', 'error');
+        btn.textContent = 'Envoyer ma demande →';
+        btn.disabled    = false;
+      });
     });
   }
 
